@@ -9,6 +9,8 @@ import About from './components/About/About'
 import CardDetail from './components/CardDetail/CardDetail';
 import Error from "./components/Error/Error";
 
+import './assets/fonts/get_schwifty.ttf'
+
 function App() {
    const [characters, setCharacters] = useState([])
    const navigate = useNavigate();

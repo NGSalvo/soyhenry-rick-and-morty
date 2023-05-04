@@ -13,7 +13,7 @@
 }
 
 .container:hover {
-  scale: 1.1;
+  scale: 1.05;
 }
 
 .container img {
@@ -46,6 +46,15 @@
 .btn:active {
   box-shadow: 4px 4px 12px #bebebe,
              -4px -4px 12px #e0e0e0;
+}
+
+.container a{
+  text-decoration: none;
+  color: black;
+}
+
+.container a:hover{
+  color: hsl(0, 0%, 19%)
 }
 
 .name {

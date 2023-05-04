@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+  border: 2px solid white;
+  border-radius: 26px 106px 26px 65px;
+  box-shadow: 10px 10px 10px hsl(0 0% 100%), -6px 12px 3px hsl(0 0% 77%);
+  text-transform: uppercase;
+}
+
+.card img {
+  width: 300px;
+  border-radius: 26px 78px;
+  margin-right: 20px;
+}

@@ -28,18 +28,20 @@ const CardDetail = () => {
 
   const renderCharacter = () => {
     if (!character.id) return <div>Loading...</div>
-    
+
     return (
-      <>
-        <img src={character.image} alt={character.name} />
+      <div className={style.card}>
+        <div>
+          <img src={character.image} alt={character.name} />
+        </div>
          <div className={style.info}>
-            <h4 className={style.name}>{character.name}</h4>
+            <h2 className={style.name}>{character.name}</h2>
             <h5>Estado: {character.status === 'Alive' ? '💓' : '💀'}</h5>
             <h5>Especie: {character.species}</h5>
             <h5>Género: {character.gender}</h5>
             <h5>Origen: {character.origin.name}</h5>
          </div>
-      </>
+      </div>
     )
   }
 

@@ -1,5 +1,32 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin: 20px;
+}
+
+.container a {
+  color: #090909;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: #e0e0e0;
+  border: 1px solid #bebebe;
+  transition: all .3s;
+  box-shadow: 6px 6px 12px #bebebe,
+             -2px -3px 10px #e0e0e0;
+  margin: 0 2px;
+  text-decoration: none;
+  padding: 0px 4px;
+}
+
+.container a:hover {
+  border: 1px solid white;
+}
+
+.active {
+  scale: 2;
+  border: 1px solid white;
+}
+
+.inactive {
+  border: 1px solid #bebebe;
 }

@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import { Link } from "react-router-dom";
+
 import style from './Card.module.css';
 
 export default function Card({id, name, status, species, gender, origin, image, onClose}) {
@@ -28,7 +30,9 @@ export default function Card({id, name, status, species, gender, origin, image, 
          <img src={image} alt={name} />
          <button className={[style.close, style.btn].join(' ')} onClick={() => onClose(id)}>X</button>
          <div className={style.info}>
-            <h4 className={style.name}>{name}</h4>
+            <Link to={`/detail/${id}`}>
+               <h4 className={style.name}>{name}</h4>
+            </Link>
             <h5>Estado: {status === 'Alive' ? '💓' : '💀'}</h5>
             <h5>Especie: {species}</h5>
             <h5>Género: {gender}</h5>

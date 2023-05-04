@@ -9,6 +9,11 @@
   box-shadow: 8px 6px 14px #bebebe,
              0px 0px 0px #ffffff;
   padding: 5px;
+  transition: all .7s;
+}
+
+.container:hover {
+  scale: 1.1;
 }
 
 .container img {
@@ -51,7 +56,9 @@
     border-radius: 30px;
     box-shadow: 6px 4px 12px hsl(56.94deg 40% 50% / 52%),
                 -2px 3px 6px hsl(56.94deg 100% 70% / 52%);
-    width: calc(100% - 37px);
+    /* width: calc(100% - 37px); */
+    width: max-content;
+    padding: 0px 1px;
 }
 
 .info {

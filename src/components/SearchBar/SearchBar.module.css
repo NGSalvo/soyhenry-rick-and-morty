@@ -1,9 +1,3 @@
-.container {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-}
-
 .search {
   margin-right: 5px;
   border-radius: 0.5em;

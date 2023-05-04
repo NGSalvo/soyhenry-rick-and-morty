@@ -8,10 +8,10 @@ const Nav = (props) => {
   return (
     <div className={style.container}>
       <div>
-        <NavLink to={'/'} className={({isActive}) => isActive ? 'active' : 'inactive'}>
+        <NavLink to={'/'} className={({isActive}) => isActive ? style.active: style.inactive}>
           Inicio
         </NavLink>
-        <NavLink to={'/about'} className={({isActive}) => isActive ? 'active': 'inactive'}>
+        <NavLink to={'/about'} className={({isActive}) => isActive ? style.active: style.inactive}>
           Acerca de mí
         </NavLink>
       </div>

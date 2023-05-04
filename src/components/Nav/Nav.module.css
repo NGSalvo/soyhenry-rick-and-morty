@@ -22,8 +22,7 @@
   border: 1px solid white;
 }
 
-.active {
-  scale: 2;
+.container a.active {
   border: 1px solid white;
 }
 

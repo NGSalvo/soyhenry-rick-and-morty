@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import axios from 'axios';
 
 import Home from './components/Home/Home'
@@ -11,22 +11,24 @@ import Error from "./components/Error/Error";
 
 function App() {
    const [characters, setCharacters] = useState([])
+   const navigate = useNavigate();
  
-   const searchById = (id) => {
-      axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
-      if (data.name) {
-         setCharacters((prev) => [...prev, data]);
-      } else {
-         window.alert('¡No hay personajes con este ID!');
+   const searchById = async(id) => {
+      try {
+         const { data } = await axios(`https://rickandmortyapi.com/api/character/${id}`);
+         if (data.name) {
+            setCharacters((prev) => [...prev, data]);
+         }
+      } catch (error) {
+         if (error.response.status === 404) return navigate('not-found')
+         console.log(error)
       }
-      });
-   
    }
+
    const onClose = (id) => { 
       const filteredCharacters = characters.filter(character => character.id !== +id);
       setCharacters(() => [...filteredCharacters])
    }
-
 
    return (
       <div className='App'>

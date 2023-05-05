@@ -22,9 +22,6 @@ function App() {
    const login = ({email, password}) => {
       if (credentials.email === email && credentials.password === password) {
          setAccess(true)
-      }
-
-      if (access) {
          navigate('/home')
       }
    }
@@ -36,7 +33,8 @@ function App() {
    const searchById = async(id) => {
       try {
          const { data } = await axios(`https://rickandmortyapi.com/api/character/${id}`);
-         if (data.name) {
+         const foundCharacter = !!characters.find(character => character.id === data.id)
+         if (data.name && !foundCharacter) {
             setCharacters((prev) => [...prev, data]);
          }
       } catch (error) {

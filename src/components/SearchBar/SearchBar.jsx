@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import style from './SearchBar.module.css';
 
 export default function SearchBar({onSearch}) {
@@ -9,10 +9,17 @@ export default function SearchBar({onSearch}) {
       setId(value);
    }
 
+   const generateRandomId = () => {
+      const maxIDs = 826
+      return Math.floor(Math.random() * maxIDs)
+   }
+
+
    return (
       <div className={style.container}>
          <input className={style.search} type='search' value={id} onChange={handleOnChange}/>
          <button className={style.btn} onClick={() => onSearch(id)}>Agregar</button>
+         <button onClick={() => onSearch(generateRandomId())}>Agregar random</button>
       </div>
    );
 }

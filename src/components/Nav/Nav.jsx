@@ -4,7 +4,6 @@ import SearchBar from '../SearchBar/SearchBar'
 import style from "./Nav.module.css";
 
 const Nav = ({onSearch, onLogout}) => {
-
   return (
     <div className={style.container}>
       <div>
@@ -16,7 +15,7 @@ const Nav = ({onSearch, onLogout}) => {
         </NavLink>
       </div>
       <SearchBar onSearch={onSearch} />
-      <button onClick={onLogout}>Logout</button>
+      <button className={style.btn} onClick={onLogout}>Logout</button>
     </div>
   )
 }

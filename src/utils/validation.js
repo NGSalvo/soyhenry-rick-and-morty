@@ -4,6 +4,9 @@ export function validate(inputs) {
   let errors = {}
 
   let emailErrors = []
+  if (!inputs.email) {
+    emailErrors.push('Se requiere un correo electrónico');
+  }
   if (!regexEmail.test(inputs.email)) {
     emailErrors.push('Debe ser un correo electrónico válido');
   }

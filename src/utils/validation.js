@@ -3,21 +3,34 @@ const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 export function validate(inputs) {
   let errors = {}
 
-  let emailErrors = []
+  const emails = {}
+  const password = {}
+
   if (!inputs.email) {
-    emailErrors.push('Se requiere un correo electrónico');
+    emails.require = 'Se requiere un correo electrónico'
   }
   if (!regexEmail.test(inputs.email)) {
-    emailErrors.push('Debe ser un correo electrónico válido');
+    emails.valid = 'Debe ser un correo electrónico válido';
   }
   if (inputs.email.length > 35) {
-    emailErrors.push('El nombre de usuario no puede tener más de 35 caracteres');
+    emails.maxCharacters = 'El nombre de usuario no puede tener más de 35 caracteres';
   }
   if (!inputs.password) {
-    errors.password = 'Se requiere una contraseña';
+    password.require = 'Se requiere una contraseña';
   }
-  
-  errors.email = emailErrors.join('\n')
+
+  if (!/.*\d+.*/i.test(inputs.password)) {
+    password.valid = 'Debe contener al menos 1 letra'
+  }
+
+  if (inputs.password.length > 10 || inputs.password.length < 6) {
+    password.length = 'Debe contener entre 6 y 10 caracteres'
+  }
+
+  errors.email = emails;
+  errors.password = password;
 
   return errors
 }
+
+// TODO: { email1: Se requiere un correo electrónico, email2: El nombre de usuario no puede tener más de 35 caracteres', ...}

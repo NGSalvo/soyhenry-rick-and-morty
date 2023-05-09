@@ -27,17 +27,46 @@ export const Login = ({login}) => {
     login(userData)
   }
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email:</label>
-      <input type="text" id='email' name="email" value={userData.email} onChange={handleChange} className={errors.email && style.warning}/>
-      {errors.email.split('\n').map((error, index) => <p key={index} className={style.danger}>{error}</p>)}
-      
-      <label htmlFor="password">Password:</label>
-      <input type="password" id='password' name="password" value={userData.password} onChange={handleChange} className={errors.password && style.warning}/>
-      <p className={style.danger}>{errors.password}</p>
+  const renderError = ({email, password}) => {
+    if (email?.require) {
+      return <p className={style.danger}>{email.require}</p>
+    }
+    if (email?.valid) {
+      return <p className={style.danger}>{email.valid}</p>
+    }
+    if (email?.maxChar) {
+      return <p className={style.danger}>{email.maxCharacters}</p>
+    }
+    if (password?.require) {
+      return <p className={style.danger}>{password.require}</p>
+    }
+    if (password?.valid) {
+      return <p className={style.danger}>{password.valid}</p>
+    }
+    if (password?.length) {
+      return <p className={style.danger}>{password.length}</p>
+    }
+  }
 
-      <button type='submit'>Login</button>
-    </form>
+  return (
+    <div className={style.container}>
+      <form onSubmit={handleSubmit} className={style.card}>
+        <label htmlFor="email">Email:</label>
+        <input type="text" id='email' name="email" value={userData.email} onChange={handleChange} className={errors.email && style.warning}/>
+        {
+          Object.keys(errors.email).length ? renderError(errors): ''
+        }
+        <label htmlFor="password">Password:</label>
+
+        <input type="password" id='password' name="password" value={userData.password} onChange={handleChange} className={errors.password && style.warning}/>
+        {
+          Object.keys(errors.password).length ? renderError(errors) : ''
+        }
+
+        <button type='submit' className={style.btn}>Login</button>
+      </form>
+    </div>
   )
 }
+
+// TODO: FALTA ESTILOS LOGIN

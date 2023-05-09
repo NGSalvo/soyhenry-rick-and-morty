@@ -16,15 +16,15 @@ export function validate(inputs) {
     emails.maxCharacters = 'El nombre de usuario no puede tener más de 35 caracteres';
   }
   if (!inputs.password) {
-    password.require = 'Se requiere una contraseña';
+    password.requireP = 'Se requiere una contraseña';
   }
 
   if (!/.*\d+.*/i.test(inputs.password)) {
-    password.valid = 'Debe contener al menos 1 letra'
+    password.validP = 'Debe contener al menos 1 número'
   }
 
   if (inputs.password.length > 10 || inputs.password.length < 6) {
-    password.length = 'Debe contener entre 6 y 10 caracteres'
+    password.lengthP = 'Debe contener entre 6 y 10 caracteres'
   }
 
   errors.email = emails;

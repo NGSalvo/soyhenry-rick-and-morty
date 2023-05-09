@@ -27,24 +27,24 @@ export const Login = ({login}) => {
     login(userData)
   }
 
-  const renderError = ({email, password}) => {
-    if (email?.require) {
-      return <p className={style.danger}>{email.require}</p>
+  const renderError = (errors) => {
+    if (errors?.require) {
+      return <p className={style.danger}>{errors.require}</p>
     }
-    if (email?.valid) {
-      return <p className={style.danger}>{email.valid}</p>
+    if (errors?.valid) {
+      return <p className={style.danger}>{errors.valid}</p>
     }
-    if (email?.maxChar) {
-      return <p className={style.danger}>{email.maxCharacters}</p>
+    if (errors?.maxCharacters) {
+      return <p className={style.danger}>{errors.maxCharacters}</p>
     }
-    if (password?.require) {
-      return <p className={style.danger}>{password.require}</p>
+    if (errors?.requireP) {
+      return <p className={style.danger}>{errors.requireP}</p>
     }
-    if (password?.valid) {
-      return <p className={style.danger}>{password.valid}</p>
+    if (errors?.validP) {
+      return <p className={style.danger}>{errors.validP}</p>
     }
-    if (password?.length) {
-      return <p className={style.danger}>{password.length}</p>
+    if (errors?.lengthP) {
+      return <p className={style.danger}>{errors.lengthP}</p>
     }
   }
 
@@ -54,13 +54,13 @@ export const Login = ({login}) => {
         <label htmlFor="email">Email:</label>
         <input type="text" id='email' name="email" value={userData.email} onChange={handleChange} className={errors.email && style.warning}/>
         {
-          Object.keys(errors.email).length ? renderError(errors): ''
+          Object.keys(errors.email).length ? renderError(errors.email) : ''
         }
         <label htmlFor="password">Password:</label>
 
         <input type="password" id='password' name="password" value={userData.password} onChange={handleChange} className={errors.password && style.warning}/>
         {
-          Object.keys(errors.password).length ? renderError(errors) : ''
+          Object.keys(errors.password).length ? renderError(errors.password) : ''
         }
 
         <button type='submit' className={style.btn}>Login</button>

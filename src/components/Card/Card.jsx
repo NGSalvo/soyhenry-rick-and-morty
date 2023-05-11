@@ -6,7 +6,7 @@ import { addFav, removeFav } from "../../redux/actions";
 
 
 
-const Card= ({id, name, status, species, gender, origin, image, onClose, myFavorites, addFav, removeFav}) => {
+const Card = ({id, name, status, species, gender, origin, image, onClose, myFavorites, addFav, removeFav}) => {
    const [isClicked, setIsClicked] = useState(false);
    const [isFav, setFav] = useState(false);
 

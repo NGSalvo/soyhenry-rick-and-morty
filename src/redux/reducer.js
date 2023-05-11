@@ -27,7 +27,8 @@ export const reducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        myFavorites: filteredCharacters
+        myFavorites: filteredCharacters,
+        allCharacters: filteredCharacters
       }
 
     case ORDER:

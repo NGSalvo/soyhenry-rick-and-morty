@@ -1,7 +1,9 @@
-import Card from '../Card/Card';
-import style from './Cards.module.css';
+import { useSelector } from "react-redux"
+import Card from "../Card/Card";
+import style from './Favorites.module.css'
 
-export default function Cards({characters, onClose}) {
+export const Favorites = () => {
+  const characters = useSelector(state => state.myFavorites)
   return (
     <div className={style.container}>{
       characters.map((character) => 
@@ -14,7 +16,7 @@ export default function Cards({characters, onClose}) {
           gender={character.gender}
           origin={character.origin.name}
           image={character.image}
-          onClose={onClose}
+          onClose={character.onClose}
         />
         )
       }

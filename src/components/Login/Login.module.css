@@ -8,3 +8,46 @@
   color: red;
   margin-left: 10em;
 }
+
+.container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  font-family: 'rickandmorty', 'Lato', 'Inter' ,-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 2px;
+  position: relative;
+  width: 351px;
+  margin: 8px;
+  border-radius: 30px;
+  background: #fbfbfb;
+  /* box-shadow: 15px 15px 30px #bebebe,
+            -15px -15px 30px #ffffff; */
+  box-shadow: 16px 20px 21px #bebebe,
+             0px 0px 0px #ffffff;
+  padding: 5px;
+  transition: all .7s;
+  height: 250px;
+  display: grid;
+
+  color: rgb(4, 173, 195);
+  height: 266px;
+}
+
+.btn {
+  border-radius: 6px 6px 30px 30px;
+  background-color: transparent;
+  /* overflow: hidden;
+  position: relative; */
+}
+
+.btn:hover {
+  background-color: #bebebe;
+}

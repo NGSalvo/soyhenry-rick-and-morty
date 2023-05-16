@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import style from './CardDetail.module.css'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { rickAndMortyURL } from "../../utils/const";
 
 // const initialState = {
 //   id: '',
@@ -17,7 +18,7 @@ const CardDetail = () => {
   const [character, setCharacter] = useState({})
 
   const fetchCharacter = async() => {
-    const {data} = await axios(`https://rickandmortyapi.com/api/character/${id}`);
+    const {data} = await axios(`${rickAndMortyURL}/${id}`);
     setCharacter(data)
   }
   

@@ -10,6 +10,7 @@ import CardDetail from './components/CardDetail/CardDetail';
 import Error from "./components/Error/Error";
 import { Login } from './components/Login/Login';
 import { Favorites } from './components/Favorites/Favorites';
+import { rickAndMortyURL } from "./utils/const";
 
 import './assets/fonts/get_schwifty.ttf'
 
@@ -20,6 +21,7 @@ function App() {
    const [access, setAccess] = useState(false)
    const navigate = useNavigate();
    const { pathname } = useLocation();
+   
 
    const login = ({email, password}) => {
       if (credentials.email === email && credentials.password === password) {
@@ -34,7 +36,7 @@ function App() {
  
    const searchById = async(id) => {
       try {
-         const { data } = await axios(`https://rickandmortyapi.com/api/character/${id}`);
+         const { data } = await axios(`${rickAndMortyURL}/${id}`);
          const foundCharacter = !!characters.find(character => character.id === data.id)
          if (data.name && !foundCharacter) {
             setCharacters((prev) => [...prev, data]);

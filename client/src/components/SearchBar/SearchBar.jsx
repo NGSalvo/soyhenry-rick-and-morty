@@ -10,8 +10,7 @@ export default function SearchBar({onSearch}) {
    }
 
    const generateRandomId = () => {
-      // const maxIDs = 826
-      const maxIDs = 5
+      const maxIDs = 826
       return Math.floor(Math.random() * maxIDs + 1 )
    }
 

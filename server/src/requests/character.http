@@ -1,0 +1,9 @@
+@hostname = localhost
+@port = 3001
+@host = {{hostname}}:{{port}}
+@contentType = applpication/json
+@url = rickandmorty/character
+
+GET http://{{host}}/{{url}}/100
+
+###

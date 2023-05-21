@@ -1,0 +1,23 @@
+@hostname = localhost
+@port = 3001
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@url = login
+
+###
+POST http://{{host}}/{{url}}
+Content-Type: application/json
+
+{
+    "email": "nicosalvo@gmail.com",
+    "password": ""
+}
+
+###
+POST http://{{host}}/{{url}}
+Content-Type: application/json
+
+{
+    "email": "sarasa@gmail.com",
+    "password": ""
+}

@@ -1,26 +1,33 @@
-const http = require('http')
-const { getCharacterById } = require('./controllers/Character.controller')
+const express = require('express');
+const cors = require('cors')
+const morgan = require('morgan')
+
+const { characterRouter } = require('./routes/character.routes');
+const { authenticationRouter } = require('./routes/authentication.routes');
 
 const PORT = process.env.PORT || 3001
 
-const server = http.createServer((req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  
-  const characterIdRegex = /\/rickandmorty\/character\/\d+$/
+const server = express()
+server.set('appName', 'Rick and Morty - Nicolás Salvo')
+server.set('port', PORT)
 
-  if (characterIdRegex.test(req.url) && req.method === 'GET') {
-    const id = +req.url.split('/').at(-1)
-    getCharacterById(res, id)
-  } else {
-    res.writeHead(404, {'Content-Type' : 'text/html'})
-    return res.end('Route not found')
-  }
+server.use(cors())
+server.use(morgan('dev'))
+server.use(express.json())
 
+// Routes
+server.use('/rickandmorty/character', characterRouter)
+server.use('/login', authenticationRouter)
+
+server.use((_, res, next) => {
+  res.status(404).send('Route not found')
+
+  next()
 })
 
-server.listen(3001, () => console.log(`Server listening on port ${PORT}...`))
+
+server.listen(server.get('port'), () => console.log(`Server listening on port ${server.get('port')}...`))
 
 module.exports = {
   server
 }
-

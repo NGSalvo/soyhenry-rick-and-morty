@@ -4,6 +4,7 @@ const morgan = require('morgan')
 
 const { characterRouter } = require('./routes/character.routes');
 const { authenticationRouter } = require('./routes/authentication.routes');
+const { favoriteRouter } = require('./routes/favorite.routes');
 
 const PORT = process.env.PORT || 3001
 
@@ -18,6 +19,7 @@ server.use(express.json())
 // Routes
 server.use('/rickandmorty/character', characterRouter)
 server.use('/login', authenticationRouter)
+server.use('/fav', favoriteRouter)
 
 server.use((_, res, next) => {
   res.status(404).send('Route not found')

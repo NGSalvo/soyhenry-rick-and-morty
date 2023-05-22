@@ -1,0 +1,22 @@
+@hostname = localhost
+@port = 3001
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@url = fav
+
+###
+POST http://{{host}}/{{url}}
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "El uno",
+    "gender": "Male",
+    "species": "Human",
+    "origin": {"name": "Earth"},
+    "image": "someImagePath",
+    "status": "Alive"
+}
+
+###
+DELETE  http://{{host}}/{{url}}/1

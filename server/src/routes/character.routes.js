@@ -7,6 +7,4 @@ router.get('/:id', (req, res) => {
   getCharacterById(req, res)
 })
 
-module.exports = {
-  characterRouter: router
-}
+module.exports = router

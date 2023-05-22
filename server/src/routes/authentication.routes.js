@@ -8,6 +8,4 @@ router.post('/', (req, res) => {
   login(req, res)
 })
 
-module.exports = {
-  authenticationRouter: router
-}
+module.exports = router

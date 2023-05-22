@@ -12,6 +12,4 @@ router.delete('/:id', (req, res) => {
   deleteFavorite(req, res)
 })
 
-module.exports = {
-  favoriteRouter: router
-}
+module.exports = router

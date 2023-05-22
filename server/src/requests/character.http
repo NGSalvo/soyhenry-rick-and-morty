@@ -1,9 +1,10 @@
 @hostname = localhost
 @port = 3001
 @host = {{hostname}}:{{port}}
-@contentType = applpication/json
-@url = rickandmorty/character
+@contentType = application/json
+@baseUrl = rickandmorty
+@url = character
 
-GET http://{{host}}/{{url}}/100
+GET http://{{host}}/{{baseUrl}}/{{url}}/100
 
 ###

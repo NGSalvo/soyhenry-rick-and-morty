@@ -1,11 +1,12 @@
 @hostname = localhost
 @port = 3001
 @host = {{hostname}}:{{port}}
+@baseUrl = rickandmorty
 @contentType = application/json
 @url = login
 
 ###
-POST http://{{host}}/{{url}}
+POST http://{{host}}/{{baseUrl}}/{{url}}
 Content-Type: application/json
 
 {
@@ -14,7 +15,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://{{host}}/{{url}}
+POST http://{{host}}/{{baseUrl}}/{{url}}
 Content-Type: application/json
 
 {

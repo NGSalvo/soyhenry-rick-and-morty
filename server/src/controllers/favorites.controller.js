@@ -5,7 +5,7 @@ const addFavorite = (req, res) => {
     const { id, name, gender, species, origin, image, status } = req.body
 
     const character = {
-      id,
+      id: +id,
       name,
       gender,
       species,

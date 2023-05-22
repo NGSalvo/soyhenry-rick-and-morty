@@ -8,7 +8,7 @@ const getCharacterById = async (req, res) => {
     const { name, gender, species, origin, image, status } = data
 
     const character = {
-      id,
+      id: +id,
       name,
       gender,
       species,

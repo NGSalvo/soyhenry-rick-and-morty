@@ -14,8 +14,6 @@ import { rickAndMortyURL } from "./utils/const";
 
 import './assets/fonts/get_schwifty.ttf'
 
-const credentials = {email: 'nicosalvo@gmail.com', password: ''}
-
 function App() {
    const [characters, setCharacters] = useState([])
    const [access, setAccess] = useState(false)
@@ -23,10 +21,16 @@ function App() {
    const { pathname } = useLocation();
    
 
-   const login = ({email, password}) => {
-      if (credentials.email === email && credentials.password === password) {
-         setAccess(true)
-         navigate('/home')
+   const login = async (userData) => {
+      try {
+         const { data } = await axios.post(`${rickAndMortyURL}/login`, userData)
+         const { access } = data
+         setAccess(access)
+         access && navigate('/home')
+      } catch (error) {
+         if (error.response.status === 404) return navigate('not-found')
+         if (error.response.status === 401) return navigate('/')
+         return navigate('/')
       }
    }
 
@@ -36,7 +40,7 @@ function App() {
  
    const searchById = async(id) => {
       try {
-         const { data } = await axios(`${rickAndMortyURL}/${id}`);
+         const { data } = await axios(`${rickAndMortyURL}/character/${id}`);
          const foundCharacter = !!characters.find(character => character.id === data.id)
          if (data.name && !foundCharacter) {
             setCharacters((prev) => [...prev, data]);

@@ -5,25 +5,24 @@ const initialState = {
   allCharacters: []
 }
 
-export const reducer = (state = initialState, action) => {
-  switch (action.type) {
+export const reducer = (state = initialState, {type, payload}) => {
+  switch (type) {
     case ADD_FAV:
       return {
         ...state,
-        myFavorites: [...state.allCharacters, action.payload],
-        allCharacters: [...state.allCharacters, action.payload]
+        myFavorites: payload,
+        allCharacters: payload
       }
     
     case REMOVE_FAV:
-      const filteredFavorites = state.myFavorites.filter(char => char.id !== action.payload)
       return {
         ...state,
-        myFavorites: filteredFavorites,
-        allCharacters: filteredFavorites
+        myFavorites: payload,
+        allCharacters: payload
       }
     case FILTER:
-      let filteredCharacters = state.allCharacters.filter(character => character.gender === action.payload)
-      if (action.payload === 'Everyone') {
+      let filteredCharacters = state.allCharacters.filter(character => character.gender === payload)
+      if (payload === 'Everyone') {
         filteredCharacters = [...state.allCharacters]
       }
       return {
@@ -35,7 +34,7 @@ export const reducer = (state = initialState, action) => {
       const copyOfFavoriteCharacters = [...state.allCharacters]
       return {
         ...state,
-        myFavorites: action.payload === 'A' ? copyOfFavoriteCharacters.sort((a,b) => a.id - b.id) : copyOfFavoriteCharacters.sort((a,b) => b.id - a.id)
+        myFavorites: payload === 'A' ? copyOfFavoriteCharacters.sort((a,b) => a.id - b.id) : copyOfFavoriteCharacters.sort((a,b) => b.id - a.id)
       }
 
     default:

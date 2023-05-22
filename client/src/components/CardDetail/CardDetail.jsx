@@ -18,7 +18,7 @@ const CardDetail = () => {
   const [character, setCharacter] = useState({})
 
   const fetchCharacter = async() => {
-    const {data} = await axios(`${rickAndMortyURL}/${id}`);
+    const {data} = await axios(`${rickAndMortyURL}/character/${id}`);
     setCharacter(data)
   }
   

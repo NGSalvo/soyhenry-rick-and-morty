@@ -7,18 +7,26 @@ const URL = `${rickAndMortyURL}/fav`
 
 export const addFav = (character) => {
   return async function(dispatch) {
-    const { data } = await axios.post(URL, character)
-
-    return dispatch({type: ADD_FAV,
-    payload: data})
+    try {
+      const { data } = await axios.post(URL, character)
+  
+      return dispatch({type: ADD_FAV,
+      payload: data})
+    } catch (error) {
+      console.log('Could not add to favorite')
+    }
   }
 }
 
 export const removeFav = (id) => {
   return async function(dispatch) {
-    const { data } = await axios.delete(`${URL}/${id}`)
-    return dispatch({type: REMOVE_FAV,
-    payload: data})
+    try {
+      const { data } = await axios.delete(`${URL}/${id}`)
+      return dispatch({type: REMOVE_FAV,
+      payload: data})
+    } catch (error) {
+      console.log('Could not remove from fav')
+    }
   }
 }
 

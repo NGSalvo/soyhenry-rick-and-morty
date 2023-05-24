@@ -29,9 +29,8 @@ const deleteFavorite = (req, res) => {
 
     const foundIndexFavorite = favorites.findIndex(character => character.id === Number(id))
 
-    console.log(id, foundIndexFavorite)
+    if (foundIndexFavorite === -1) return res.status(404).send(favorites)
 
-    if (foundIndexFavorite === -1) return res.status(404).send(`Character with id ${id} not found`)
     
     favorites = [...favorites.slice(0,foundIndexFavorite), ...favorites.slice(foundIndexFavorite+1)]
     
@@ -45,5 +44,6 @@ const deleteFavorite = (req, res) => {
 
 module.exports = {
   addFavorite,
-  deleteFavorite
+  deleteFavorite,
+  favorites
 }

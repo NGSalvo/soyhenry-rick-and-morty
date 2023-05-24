@@ -46,5 +46,4 @@ const deleteFavorite = (req, res) => {
 module.exports = {
   addFavorite,
   deleteFavorite,
-  favorites
 }

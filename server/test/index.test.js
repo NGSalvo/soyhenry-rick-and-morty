@@ -1,7 +1,6 @@
 const { server } = require('../src/app');
 const supertest = require('supertest');
 const request = supertest(server);
-let { favorites } = require('../src/controllers/favorites.controller');
 
 describe('GET /rickandmorty/character/:id', () => {
   it('should return an 200', async () => {
@@ -91,14 +90,10 @@ describe.only('DELETE /rickandmorty/fav/:id', () => {
   })
 
   it('should return all the favorites when sending an non-existent ID', async () => {
-    try {
-      const response = await request
-        .delete('/rickandmorty/fav/1345')
-        .expect(404)
-      
-      expect(response.body).toHaveLength(1)
-    } catch (error) {
-      console.log(error)
-    }
+    const response = await request
+      .delete('/rickandmorty/fav/1')
+      .expect(404)
+    
+    expect(response.body).toHaveLength(1)
   })
 })

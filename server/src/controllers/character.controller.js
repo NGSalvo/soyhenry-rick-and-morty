@@ -20,7 +20,7 @@ const getCharacterById = async (req, res) => {
     return res.status(200).send(character)
   } catch(error) {
     if (error.response.status === 404) return res.status(404).send('Not found')
-    res.status(500).end(error.message)
+    res.status(500).send(error.message)
   }
 }
 

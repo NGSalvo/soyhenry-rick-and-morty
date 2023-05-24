@@ -1,6 +1,6 @@
 const { server } = require('../src/app');
-const session = require('supertest');
-const agent = session(server);
+const request = require('supertest');
+const agent = request(server);
 
 describe('GET /rickandmorty/character/:id', () => {
   it('should return an 200', async () => {
@@ -20,3 +20,26 @@ describe('GET /rickandmorty/character/:id', () => {
     await agent.get('/rickandmorty/character/asd').expect(500)
   })
 })
+
+describe('POST /rickandmorty/login', () => {
+  it('should log in when the credentials are OK', async () => {
+    const credential = {
+      email: 'nicosalvo@gmail.com',
+      password: ''
+    }
+    await agent
+      .post('/rickandmorty/login')
+      .send(credential)
+      .expect({ access: true })
+  })
+
+  it('should not login when the credentials are wrong', async () => {
+    const credential = {}
+    await agent
+      .post('/rickandmorty/login')
+      .send(credential)
+      .expect(401)
+      .expect({ access: false })
+  })
+})
+

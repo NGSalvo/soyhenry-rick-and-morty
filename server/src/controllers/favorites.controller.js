@@ -29,15 +29,16 @@ const deleteFavorite = (req, res) => {
 
     const foundIndexFavorite = favorites.findIndex(character => character.id === Number(id))
 
-    if (foundIndexFavorite === -1) return res.status(404).send(favorites)
+    if (foundIndexFavorite === -1) throw new Error('Not found')
 
     
     favorites = [...favorites.slice(0,foundIndexFavorite), ...favorites.slice(foundIndexFavorite+1)]
     
     return res.status(200).send(favorites)
   } catch(error) {
-    if (error.response.status === 404) return res.status(404).send('Not found')
-    res.status(500).end(error.message)
+    if (error.message === `Not found`) return res.status(404).send(favorites)
+    // if (error.response.status === 404) return res.status(404).send('Not found')
+    res.status(500).send(error.message)
   }
 }
 

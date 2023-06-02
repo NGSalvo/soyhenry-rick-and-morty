@@ -1,43 +1,47 @@
-let favorites = []
+const { Favororite, Favorite } = require('../db')
+const { hasAllProperties } = require('../utils/utils')
 
-const addFavorite = (req, res) => {
+const addFavorite = async (req, res) => {
   try {
-    const { id, name, gender, species, origin, image, status } = req.body
+    const { id } = req.body
+    const requiredProperties = {
+      id: true,
+      name: true,
+      gender: true,
+      species: true,
+      origin: true,
+      image: true,
+      status: true
+    }
+
+    if (!hasAllProperties(req.body), requiredProperties) return res.status(401).send('Faltan datos')
 
     const character = {
       id: +id,
-      name,
-      gender,
-      species,
-      origin,
-      image,
-      status
+      ...req.body
     }
 
-    favorites.push(character)
+    const favorites = await Favorite.findOrCreate({ where: { character } })
     
     return res.status(200).send(favorites)
   } catch(error) {
-    if (error.response.status === 404) return res.status(404).send('Not found')
-    res.status(500).end(error.message)
+    res.status(500).send(error.message)
   }
 }
 
-const deleteFavorite = (req, res) => {
+const deleteFavorite = async (req, res) => {
   try {
     const { id } = req.params
 
-    const foundIndexFavorite = favorites.findIndex(character => character.id === Number(id))
+    await Favorite.destroy({ where: id })
 
-    if (foundIndexFavorite === -1) throw new Error('Not found')
+    // if (!deletedRows) throw new Error('Not found')
 
-    
-    favorites = [...favorites.slice(0,foundIndexFavorite), ...favorites.slice(foundIndexFavorite+1)]
+    const favorites = Favorite.findAll()
     
     return res.status(200).send(favorites)
   } catch(error) {
-    if (error.message === `Not found`) return res.status(404).send(favorites)
-    // if (error.response.status === 404) return res.status(404).send('Not found')
+    // if (error.message === `Not found`) return res.status(404).send(favorites)
     res.status(500).send(error.message)
   }
 }

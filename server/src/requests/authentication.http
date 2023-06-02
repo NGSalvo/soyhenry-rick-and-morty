@@ -15,7 +15,16 @@ Content-Type: application/json
 }
 
 ###
-POST http://{{host}}/{{baseUrl}}/{{url}}
+GET http://{{host}}/{{baseUrl}}/{{url}}
+Content-Type: application/json
+
+{
+    "email": "nicosalvo@gmail.com",
+    "password": ""
+}
+
+###
+GET http://{{host}}/{{baseUrl}}/{{url}}
 Content-Type: application/json
 
 {

@@ -1,13 +1,17 @@
-const { users } = require('../utils/users')
+const { User } = require('../db')
+const { hasAllProperties } = require('../utils/utils')
 
-const login = (req, res) => {
+const login = async (req, res) => {
   try {
     const {email, password} = req.body
 
-    const foundUser = users.find(user => user.email === email)
+    if (!hasAllProperties(req.body, { email: true, password: true })) return res.status(400).send('Faltan datos')
 
-    if (foundUser && foundUser.password === password) return res.status(200).send({access: true})
-    return res.status(401).send({access: false})
+    const foundUser = await User.findOne({where: { email, password } })
+
+    if (!foundUser) return res.status(401).send('Usuario no autorizado')
+
+    return res.status(200).send({access: true})
 
   } catch(error) {
     res.status(500).send(error.message)
